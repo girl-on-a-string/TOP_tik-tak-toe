@@ -2,7 +2,8 @@
   --bg-color: #94a3b8;
   --board-color: #e2e8f0;
   --btn-color: #cbd5e1;
-  --border-color: ;
+  --border-color: #0f172a;
+  --txt-color: #0f172a;
   --corner-rad: .625rem;
 }
 
@@ -20,6 +21,7 @@ body {
   margin: 0;
   background-color: var();
   background-color: var(--bg-color);
+  font-family: sans-serif;
 }
 
 #container {
@@ -31,7 +33,7 @@ body {
 
 #board {
   background-color: var(--board-color);
-  box-shadow: 0.5rem 0.5rem black;
+  box-shadow: 0.5rem 0.5rem var(--border-color);
   border-radius: var(--corner-rad);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -40,11 +42,26 @@ body {
   padding: 3.125rem;
 }
 #board .square {
-  box-shadow: 0.5rem 0.5rem black;
+  box-shadow: 0.5rem 0.5rem var(--border-color);
   background-color: var(--btn-color);
   border-radius: var(--corner-rad);
 }
 
 #select {
   height: 4.6875rem;
+  padding: 1.25rem;
+}
+#select span {
+  font-size: 1.5625rem;
+}
+#select button {
+  background-color: var(--border-color);
+  color: var(--btn-color);
+  border: none;
+  padding: 0.625rem;
+  font-size: 1.5625rem;
+  font-weight: bold;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: var(--corner-rad);
 }/*# sourceMappingURL=index.css.map */
