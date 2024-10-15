@@ -28,7 +28,16 @@ body {
   width: 46.875rem;
   height: 46.875rem;
   display: grid;
-  grid-template-rows: 5fr 1fr;
+  grid-template-rows: 1fr 6fr 1fr;
+}
+
+#your-char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5625rem;
+  color: var(--border-color);
+  font-weight: bold;
 }
 
 #board {
@@ -44,29 +53,5 @@ body {
 #board .square {
   box-shadow: 0.5rem 0.5rem var(--border-color);
   background-color: var(--btn-color);
-  border-radius: var(--corner-rad);
-}
-
-#select {
-  height: 4.6875rem;
-  padding: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: -moz-max-content;
-  height: max-content;
-}
-#select span {
-  font-size: 1.5625rem;
-}
-#select button {
-  background-color: var(--border-color);
-  color: var(--btn-color);
-  border: none;
-  padding: 0.625rem;
-  font-size: 1.5625rem;
-  font-weight: bold;
-  width: 3.125rem;
-  height: 3.125rem;
   border-radius: var(--corner-rad);
 }/*# sourceMappingURL=index.css.map */
