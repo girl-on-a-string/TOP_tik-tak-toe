@@ -50,6 +50,11 @@ body {
 #select {
   height: 4.6875rem;
   padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: -moz-max-content;
+  height: max-content;
 }
 #select span {
   font-size: 1.5625rem;
