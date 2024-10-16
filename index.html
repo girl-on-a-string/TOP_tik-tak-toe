@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My tik tak toe</title>
+    <title>My tic tac toe</title>
     <link rel="stylesheet" href="/dist/index.css">
 </head>
 <body>
     <div id="container">
         <div id="your-char">
-            <span>You are X</span>
+            <span>Player 1 is X. Player 2 is O.</span>
         </div>
         <div id="board">
             <div class="square"></div>
@@ -24,7 +24,7 @@
         </div>
         <div id="stats">
             <span id="turn">
-                It's your turn.
+                It's <span id="player-num">Player 1's</span> turn.
             </span>
             <span id="score">
                 Score: <span id="points">0</span>
