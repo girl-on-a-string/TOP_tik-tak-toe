@@ -67,8 +67,15 @@ body {
     font-weight: bold;
     flex-direction: column;
     
-    span:first-child {
+    #turn {
         margin-bottom: .625rem;
         margin-top: 1.5625rem;
+    }
+
+    #score {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
     }
 }
