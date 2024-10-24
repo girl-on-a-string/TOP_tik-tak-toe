@@ -41,9 +41,15 @@ function gameboard () {
 //game logic (what makes it work)
 
 function logic (playerOne, playerTwo) {
-    // const gameboard = gameboard();
+    const gameboard = gameboard();
     // const playerOne = playerOne();
     // const playerTwo = playerTwo();
+
+    let currentPlayer = playerOne;
+    let gameOver = false;
+
+    const cell = document.getElementsByClassName("cell");
+    const restartBtn = document.getElementById("restart");
 
     return {
 
