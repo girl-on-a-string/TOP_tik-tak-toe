@@ -51,7 +51,16 @@ function logic (playerOne, playerTwo) {
     const cell = document.getElementsByClassName("cell");
     const restartBtn = document.getElementById("restart");
 
-    return {
+    const resetGame = () => {
+        gameboard.fill("");
+        cell.forEach(cell => {
+            cell.textContent("");
+        });
+    }
 
+    return {
+        resetGame
     }
 }
+
+logic();

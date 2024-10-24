@@ -50,7 +50,7 @@ body {
   gap: 3.125rem;
   padding: 3.125rem;
 }
-#board .square {
+#board .cell {
   box-shadow: 0.5rem 0.5rem var(--border-color);
   background-color: var(--btn-color);
   border-radius: var(--corner-rad);
