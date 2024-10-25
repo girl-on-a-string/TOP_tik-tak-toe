@@ -18,32 +18,22 @@ function gameboard () {
     }
 
     return {
-        gameboard, placeMarker, isGameboardFull
+        getGameboard, placeMarker, isGameboardFull
     }
 }
 
-//player 1
+// players
 
-// function playerOne () {
-//     return {
-//         symbol: "X"
-//     }
-// }
-
-//player 2
-
-// function playerTwo () {
-//     return {
-//         symbol: "O"
-//     }
-// }
+const player = (name, marker) => {
+    return {
+        name, marker
+    }
+}
 
 //game logic (what makes it work)
 
 function logic (playerOne, playerTwo) {
     const gameboard = gameboard();
-    // const playerOne = playerOne();
-    // const playerTwo = playerTwo();
 
     let currentPlayer = playerOne;
     let gameOver = false;
@@ -63,4 +53,6 @@ function logic (playerOne, playerTwo) {
     }
 }
 
-logic();
+const playerOne = player("player one", "X");
+const playerTwo = player("player two", "O");
+const game = logic(playerOne, playerTwo);
