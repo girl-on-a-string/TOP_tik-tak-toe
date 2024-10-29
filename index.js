@@ -1,64 +1,3 @@
-//gameboard 
-
-// const gameboard = () => {
-//     const gameboardDisplay = ["", "", "", "", "", "", "", "", ""]; //cells
-
-//     const placeMarker = (player, index) => { 
-//         if (gameboardDisplay[index] == "") { //place marker if empty
-//             gameboardDisplay[index] = player.marker;
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }
-
-//     const getGameboard = () => {gameboard};
-//     const isGameboardFull = () => {
-//         gameboardDisplay.filter((cell) => cell === "").length === 0;
-//     }
-
-//     return {
-//         gameboard, getGameboard, placeMarker, isGameboardFull
-//     }
-// }
-
-// players
-
-// const player = (name, marker) => {
-//     return {
-//         name, marker
-//     }
-// }
-
-//game logic (what makes it work)
-
-// function logic (playerOne, playerTwo) {
-//     const gameboard = gameboard();
-
-//     let currentPlayer = playerOne;
-//     let gameOver = false;
-
-//     const cell = document.getElementsByClassName("cell");
-//     const restartBtn = document.getElementById("restart");
-
-//     const resetGame = () => {
-//         gameboard.fill("");
-//         cell.forEach(cell => {
-//             cell.textContent("");
-//         });
-//     }
-
-//     return {
-//         resetGame
-//     }
-// }
-
-// const playerOne = player("player one", "X");
-// const playerTwo = player("player two", "O");
-// const game = logic(playerOne, playerTwo);
-
-/////////////////////////
-
 const player = (name, marker) => {
     return {
         name, marker
@@ -88,6 +27,9 @@ const gameboard = () => { //gameboard object
 }
 
 const gameLogic = () => {
+    const gameboard = gameboard();
+    const cell = document.querySelectorAll(".cell");
+    const resetBtn = document.getElementById("restart");
     let currentPlayer = playerOne;
     let isGameOver = false;
 
@@ -100,14 +42,20 @@ const gameLogic = () => {
     const cellClickHandling = (e) => {
         cell.forEach(cell => {
             const index = e.target.getAttribute("data-index");
+            console.log(index + " clicked");
         });
     }
 
     const takeTurn = () => {
 
     }
+
+    return {
+
+    }
 }
 
 const playerOne = player("Player One", "X");
 const playerTwo = player("Player Two", "O");
+const game = gameLogic;
 
