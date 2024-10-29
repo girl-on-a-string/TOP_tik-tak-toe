@@ -91,4 +91,6 @@ const gameLogic = () => {
 
 }
 
+const playerOne = new player("Player One", "X");
+const playerTwo = new player("Player Two", "O");
 
