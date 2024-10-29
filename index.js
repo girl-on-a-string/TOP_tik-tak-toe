@@ -88,9 +88,26 @@ const gameboard = () => { //gameboard object
 }
 
 const gameLogic = () => {
+    let currentPlayer = playerOne;
+    let isGameOver = false;
 
+    cell.forEach(cell => {
+        cell.addEventListener("click", () => {
+            cellClickHandling;
+        })
+    });
+
+    const cellClickHandling = (e) => {
+        cell.forEach(cell => {
+            const index = e.target.getAttribute("data-index");
+        });
+    }
+
+    const takeTurn = () => {
+
+    }
 }
 
-const playerOne = new player("Player One", "X");
-const playerTwo = new player("Player Two", "O");
+const playerOne = player("Player One", "X");
+const playerTwo = player("Player Two", "O");
 
