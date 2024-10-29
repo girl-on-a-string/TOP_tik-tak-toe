@@ -1,28 +1,63 @@
 //gameboard 
 
-function gameboard () {
-    const gameboard = ["", "", "", "", "", "", "", "", ""]; //cells
+// const gameboard = () => {
+//     const gameboardDisplay = ["", "", "", "", "", "", "", "", ""]; //cells
 
-    const placeMarker = (player, index) => { 
-        if (gameboard[index] == "") { //place marker if empty
-            gameboard[index] = player.marker;
-            return true;
-        } else {
-            return false;
-        }
-    }
+//     const placeMarker = (player, index) => { 
+//         if (gameboardDisplay[index] == "") { //place marker if empty
+//             gameboardDisplay[index] = player.marker;
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
 
-    const getGameboard = () => {gameboard};
-    const isGameboardFull = () => {
-        gameboard.filter((cell) => cell === "").length === 0;
-    }
+//     const getGameboard = () => {gameboard};
+//     const isGameboardFull = () => {
+//         gameboardDisplay.filter((cell) => cell === "").length === 0;
+//     }
 
-    return {
-        getGameboard, placeMarker, isGameboardFull
-    }
-}
+//     return {
+//         gameboard, getGameboard, placeMarker, isGameboardFull
+//     }
+// }
 
 // players
+
+// const player = (name, marker) => {
+//     return {
+//         name, marker
+//     }
+// }
+
+//game logic (what makes it work)
+
+// function logic (playerOne, playerTwo) {
+//     const gameboard = gameboard();
+
+//     let currentPlayer = playerOne;
+//     let gameOver = false;
+
+//     const cell = document.getElementsByClassName("cell");
+//     const restartBtn = document.getElementById("restart");
+
+//     const resetGame = () => {
+//         gameboard.fill("");
+//         cell.forEach(cell => {
+//             cell.textContent("");
+//         });
+//     }
+
+//     return {
+//         resetGame
+//     }
+// }
+
+// const playerOne = player("player one", "X");
+// const playerTwo = player("player two", "O");
+// const game = logic(playerOne, playerTwo);
+
+/////////////////////////
 
 const player = (name, marker) => {
     return {
@@ -30,29 +65,30 @@ const player = (name, marker) => {
     }
 }
 
-//game logic (what makes it work)
 
-function logic (playerOne, playerTwo) {
-    const gameboard = gameboard();
+const gameboard = () => { //gameboard object
+    const gameDisplay = ["", "", "", "", "", "", "", "", ""];
 
-    let currentPlayer = playerOne;
-    let gameOver = false;
+    gameDisplay.placeMarker = (player, index) => {
+        if (gameDisplay[index] == "") { //place marker if empty
+            gameDisplay[index] = player.marker;
+            return true
+        } else {
+            return false
+        }
+    }
 
-    const cell = document.getElementsByClassName("cell");
-    const restartBtn = document.getElementById("restart");
-
-    const resetGame = () => {
-        gameboard.fill("");
-        cell.forEach(cell => {
-            cell.textContent("");
-        });
+    gameDisplay.isBoardFull = () => { //check if board is full
+        gameDisplay.filter((cell) => cell == "").length === 0;
     }
 
     return {
-        resetGame
+        gameDisplay
     }
 }
 
-const playerOne = player("player one", "X");
-const playerTwo = player("player two", "O");
-const game = logic(playerOne, playerTwo);
+const gameLogic = () => {
+
+}
+
+
