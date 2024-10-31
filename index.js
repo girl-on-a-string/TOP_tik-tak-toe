@@ -1,11 +1,14 @@
+// player object
+
 const player = (name, marker) => {
     return {
         name, marker
     }
 }
 
+// setup game board
 
-const gameboard = () => { //gameboard object
+const gameboard = () => { 
     const gameDisplay = ["", "", "", "", "", "", "", "", ""];
 
     gameDisplay.placeMarker = (player, index) => {
@@ -26,6 +29,8 @@ const gameboard = () => { //gameboard object
     }
 }
 
+// make the game work
+
 const gameLogic = () => {
     const gameboard = gameboard();
     const cell = document.querySelectorAll(".cell");
@@ -34,9 +39,7 @@ const gameLogic = () => {
     let isGameOver = false;
 
     cell.forEach(cell => {
-        cell.addEventListener("click", () => {
-            cellClickHandling;
-        })
+        cell.addEventListener("click", cellClickHandling)
     });
 
     const cellClickHandling = (e) => {
@@ -46,12 +49,24 @@ const gameLogic = () => {
         });
     }
 
+    const disableCellClick = () => {
+        cell.forEach(cell => {
+            cell.removeEventListener("click", cellClickHandling);
+        });
+    }
+
     const takeTurn = () => {
 
     }
 
-    return {
+    resetBtn.addEventListener("click", resetGame);
 
+    const resetGame = () => {
+        
+    }
+
+    return {
+        
     }
 }
 
