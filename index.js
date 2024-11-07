@@ -37,6 +37,7 @@ const gameLogic = () => {
     const gameboard = gameboard();
     const cell = document.querySelectorAll(".cell");
     const resetBtn = document.getElementById("restart");
+    const resultSpace = document.getElementById("result");
     let currentPlayer = playerOne;
     let isGameOver = false;
 
@@ -48,6 +49,10 @@ const gameLogic = () => {
         cell.forEach(cell => {
             const index = e.target.getAttribute("data-index");
             console.log(index + " clicked");
+            const winningCombos = checkWinner();
+            if (winningCombos) {
+                displayWinner();
+            }
         });
     }
 
@@ -80,8 +85,20 @@ const gameLogic = () => {
         return null
     }
 
-    const takeTurn = () => {
+    const takeTurn = (index, cell) => {
+        if (isGameOver == false) { 
+            if (gameboard.placeMarker(currentPlayer, index)) {
+                cell.innerText = currentPlayer.marker;
+            }
+        } else { //isgameover = true
+            disableCellClick();
+            return
+        }
+    }
 
+    const displayWinner = (message) => {
+        const winResult = document.getElementById("result");
+        winResult.innerText = message;
     }
 
     resetBtn.addEventListener("click", resetGame);
