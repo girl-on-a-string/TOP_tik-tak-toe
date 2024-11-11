@@ -18,7 +18,7 @@ const gameboard = (() => {
 
     //
 
-    const getGameboard = () => {gameboardArray};
+    const getGameboard = () => gameboardArray;
 
     return {
         placeMarker, getGameboard
@@ -29,32 +29,45 @@ const gameboard = (() => {
 // players
 
 function player (name, marker) {
+    let score = 0;
+
+    const increaseScore = () => {
+        score++;
+    }
+
     return {
-        name, marker
+        name, marker, score
     }
 }
 
 // game logic
 
 function gameLogic () {
-
+    let currentPlayer = playerOne;
     let isGameOver = false;
 
     // finding winner
 
     const winningCombos = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [1, 5, 9],
-        [3, 5, 7],
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+        [0, 3, 6],
         [1, 4, 7],
-        [2, 5, 8],
-        [3, 6, 9]
+        [2, 5, 8]
     ]
 
-    function findWinner (index) {
+    function findWinner (marker, index) {
+        marker = player.marker;
+        index = gameboard[index];
 
+        if (gameboard.getGameboard[index] == player.marker && winningCombos == true) {
+            console.log("findwinner true")
+        } else {
+            console.log("findwinner false")
+        }
     }
 
     // play game
@@ -70,3 +83,4 @@ function gameLogic () {
 
 const playerOne = player("playerOne", "X");
 const playerTwo = player("PlayerTwo", "O");
+const newGame = gameLogic;
