@@ -1,18 +1,7 @@
-(() => { //for single instances
+const gameboard = (() => {
+    const gameboardArray = Array(9).fill(null);
 
-    // gameboard
-
-    function gameboard () {
-        const gameboardArray = Array(9).fill(null);
-
-        return {
-            gameboardArray
-        }
-    }
-
-    // place marker
-
-    function placeMarker (marker, index) {
+    const placeMarker = (marker, index) => {
         if (!gameboardArray[index]) {
             gameboardArray[index] = marker;
             return true
@@ -20,7 +9,22 @@
             return false
         }
     }
-})();
+
+    //reset game 
+
+    const resetGameboard = () => {
+        gameboardArray.fill(null);
+    }
+
+    //
+
+    const getGameboard = () => {gameboardArray};
+
+    return {
+        placeMarker, getGameboard
+    }
+});
+
 
 // players
 
@@ -33,7 +37,7 @@ function player (name, marker) {
 // game logic
 
 function gameLogic () {
-    let gameboardObject = gameboard();
+
     let isGameOver = false;
 
     // finding winner
