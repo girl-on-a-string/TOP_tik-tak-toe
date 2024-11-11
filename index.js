@@ -1,5 +1,7 @@
-const gameboard = (() => {
+const gameboard = (() => { //iife
     const gameboardArray = Array(9).fill(null);
+
+    //place markers
 
     const placeMarker = (marker, index) => {
         if (!gameboardArray[index]) {
@@ -8,12 +10,6 @@ const gameboard = (() => {
         } else {
             return false
         }
-    }
-
-    //reset game 
-
-    const resetGameboard = () => {
-        gameboardArray.fill(null);
     }
 
     //
@@ -44,7 +40,11 @@ function player (name, marker) {
 
 function gameLogic () {
     let currentPlayer = playerOne;
-    let isGameOver = false;
+
+    // cell click
+    
+    const cell = document.querySelectorAll(".cell");
+
 
     // finding winner
 
@@ -59,14 +59,27 @@ function gameLogic () {
         [2, 5, 8]
     ]
 
-    function findWinner (marker, index) {
-        marker = player.marker;
-        index = gameboard[index];
+    function findWinner (currentPlayer) {
+        for (let i = 0; i < winningCombos.length(); i++) {
+            let isGameOver = false;
+            const condition = winningCombos[i];
+            const cellOne = winningCombos[0];
+            const cellTwo = winningCombos[1];
+            const cellThree = winningCombos[2];
 
-        if (gameboard.getGameboard[index] == player.marker && winningCombos == true) {
-            console.log("findwinner true")
-        } else {
-            console.log("findwinner false")
+            if (cellOne == "" || cellTwo == "" || cellThree == "") {
+                continue;
+            }
+
+            if (cellOne == cellTwo && cellTwo == cellThree) { //all spots filled with same marker
+                isGameOver = true;
+                break;
+            }
+
+            if (isGameOver == true) {
+                const resultDisplay = document.getElementById("result");
+                resultDisplay.innerText = `${currentPlayer} wins!`;
+            }
         }
     }
 
@@ -77,10 +90,28 @@ function gameLogic () {
     } else { //true
 
     }
+
+    //reset game 
+
+    function resetGame () {
+        gameboardArray.fill(null);
+
+    }
+
+    // play game
+
+    function playGame () {
+
+    }
+
+    return {
+        
+    }
 }
 
 // put it all together
 
+const newBoard = gameboard;
 const playerOne = player("playerOne", "X");
 const playerTwo = player("PlayerTwo", "O");
 const newGame = gameLogic;
