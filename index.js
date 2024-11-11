@@ -38,7 +38,7 @@ function player (name, marker) {
 
 // game logic
 
-function gameLogic () {
+const gameLogic = (() => { //iife
     let currentPlayer = playerOne;
 
     // cell click
@@ -83,14 +83,6 @@ function gameLogic () {
         }
     }
 
-    // play game
-
-    if (isGameOver) { //false
-
-    } else { //true
-
-    }
-
     //reset game 
 
     function resetGame () {
@@ -101,17 +93,29 @@ function gameLogic () {
     // play game
 
     function playGame () {
+        if (isGameOver) { //false
 
+        } else { //true
+    
+        }
     }
 
     return {
         
     }
-}
+});
 
 // put it all together
 
-const newBoard = gameboard;
 const playerOne = player("playerOne", "X");
 const playerTwo = player("PlayerTwo", "O");
-const newGame = gameLogic;
+
+const cell = document.querySelectorAll(".cell");
+
+cell.forEach(cell => {
+    cell.addEventListener("click", () => {
+        console.log("clicked");
+    });
+});
+
+
