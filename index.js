@@ -41,11 +41,6 @@ function player (name, marker) {
 const gameLogic = (() => { //iife
     let currentPlayer = playerOne;
 
-    // cell click
-    
-    const cell = document.querySelectorAll(".cell");
-
-
     // finding winner
 
     const winningCombos = [
@@ -59,7 +54,7 @@ const gameLogic = (() => { //iife
         [2, 5, 8]
     ]
 
-    function findWinner (currentPlayer) {
+    const findWinner = (currentPlayer) => {
         for (let i = 0; i < winningCombos.length(); i++) {
             let isGameOver = false;
             const condition = winningCombos[i];
@@ -92,7 +87,7 @@ const gameLogic = (() => { //iife
 
     // play game
 
-    function playGame () {
+    const playGame = () => {
         if (isGameOver) { //false
 
         } else { //true
@@ -101,7 +96,7 @@ const gameLogic = (() => { //iife
     }
 
     return {
-        
+        playGame
     }
 });
 
@@ -115,6 +110,7 @@ const cell = document.querySelectorAll(".cell");
 cell.forEach(cell => {
     cell.addEventListener("click", () => {
         console.log("clicked");
+        gameLogic.playGame;
     });
 });
 
