@@ -32,6 +32,12 @@ function player (name, marker) {
 const gameLogic = (() => { //iife
     let isGameOver = false;
 
+    // change player 
+
+    const changePlayer = () => {
+
+    }
+
     // finding winner
 
     const winningCombos = [
@@ -44,6 +50,22 @@ const gameLogic = (() => { //iife
         [1, 4, 7],
         [2, 5, 8]
     ]
+
+    const checkWinner = () => {
+
+    }
+
+    // increase score
+
+    const increaseScore = () => {
+
+    }
+
+    // reset game
+
+    const resetGame = () => {
+        
+    }
 
     return {
         
