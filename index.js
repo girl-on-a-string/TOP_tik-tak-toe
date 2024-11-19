@@ -4,8 +4,11 @@ const gameboard = (() => { //iife
     //place markers
 
     const placeMarker = (marker, index) => {
+        marker = player.marker;
+
         if (!gameboardArray[index]) {
             gameboardArray[index] = marker;
+            console.log(marker);
             return true
         } else {
             return false
@@ -41,6 +44,13 @@ function player (name, marker) {
 const gameLogic = (() => { //iife
     let isGameOver = false;
 
+    //change player 
+
+    const changePlayer = () => {
+        currentPlayer = currentPlayer === currentPlayer ? playerOne : playerTwo;
+        console.log(currentPlayer);
+    }
+
     // finding winner
 
     const winningCombos = [
@@ -56,7 +66,6 @@ const gameLogic = (() => { //iife
 
     const findWinner = (currentPlayer) => {
         for (let i = 0; i < winningCombos.length(); i++) {
-            const condition = winningCombos[i];
             const cellOne = winningCombos[0];
             const cellTwo = winningCombos[1];
             const cellThree = winningCombos[2];
@@ -81,21 +90,21 @@ const gameLogic = (() => { //iife
 
     function resetGame () {
         gameboardArray.fill(null);
-
+        player.score = 0;
     }
+
+    //update turn status
+
+    // const updateTurnStatus = () => {
+    //     document.getElementById("player-num").innerText = currentPlayer ? playerOne : playerTwo;
+    //     console.log(currentPlayer);
+    // }
 
     // play game
 
     const playGame = () => {
-        if (isGameOver) { //false
-            const changePlayer = () => {
-                currentPlayer = (currentPlayer == playerOne) ? (currentPlayer == playerTwo) : (currentPlayer == playerOne);
-                console.log(currentPlayer);
-            }
-
-            return {
-                changePlayer
-            }
+        if (isGameOver == false) { //false
+            changePlayer;
 
         } else { //true
     
@@ -103,12 +112,11 @@ const gameLogic = (() => { //iife
     }
 
     return {
-        playGame
+        playGame, findWinner, resetGame, updateTurnStatus
     }
 });
 
 // put it all together
-
 
 const playerOne = player("playerOne", "X");
 const playerTwo = player("PlayerTwo", "O");
@@ -121,11 +129,18 @@ cell.forEach(cell => {
     cell.addEventListener("click", () => {
         console.log("clicked");
         gameLogic.playGame;
+        gameLogic.updateTurnStatus;
         
         if (cell.innerText == "") {
-            cell.innerText = currentPlayer.marker;
+            gameboard.placeMarker;
         }
     });
+});
+
+const resetBtn = document.getElementById("restart");
+resetBtn.addEventListener("click", () => {
+    gameLogic.resetGame;
+    console.log("resetting");
 });
 
 
