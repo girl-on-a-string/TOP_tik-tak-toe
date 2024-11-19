@@ -8,34 +8,17 @@
 </head>
 <body>
     <div id="container">
-        <div id="your-char">
-            <span>Player 1 is X. Player 2 is O.</span>
-            <div id="winner">
-                <span id="result"></span>
-            </div>
-        </div>
-        <div id="board">
-            <!-- <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div> -->
-        </div>
-        <div id="stats">
-            <span id="turn">
-                It's <span id="player-num">Player 1's</span> turn.
-            </span>
-            <div id="score">
-                <span id="player-one-score">Player 1's score: </span>
-                <span id="player-two-score">Player 2's score: </span>
-            </div>
-        </div>
-        <div id="restart">
-            <button id="restart">Restart</button>
+        <div id="modal">
+            <h1>Input player names:</h1>
+            <form action="">
+                <fieldset>
+                    <label for="playerOne">Player One's name: </label>
+                    <input id="playerOne-input" type="text">
+                    <label for="playerTwo">Player Two's name: </label>
+                    <input id="playerTwo-input" type="text">
+                </fieldset>
+                <button id="start-game">Begin Game</button>
+            </form>
         </div>
     </div>
     <script src="index.js"></script>
