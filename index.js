@@ -83,41 +83,31 @@ const gameLogic = (() => { //iife
         
     }
 
-    return {
-        
+    // start game 
+
+    const start = () => {
+        gameboard.renderBoard;
     }
-});
-
-// screen controls
-
-const screenControls = (() => {
-    const playerOne = player("playerOne", "X");
-    const playerTwo = player("PlayerTwo", "O");
-
-    let currentPlayer = playerOne;
-
-    const cell = document.querySelectorAll(".cell");
-
-    const cellClick = () => {
-        cell.forEach(cell => {
-            cell.addEventListener("click", () => {
-                gameboard.placeMarker;
-                console.log("clicked");
-            });
-        });
-    }
-
-    const resetBtn = document.getElementById("restart");
-    resetBtn.addEventListener("click", () => {
-        console.log("resetting");
-    });
 
     return {
-        cellClick
+        start
     }
-});
+})();
 
-screenControls.cellClick;
+
+const startBtn = document.getElementById("start-game");
+
+startBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+
+    const playerOne = player(document.querySelector("#playerOne-input").value, "X");
+    const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
+
+    gameLogic.start;
+});
 
 
 
