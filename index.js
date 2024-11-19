@@ -3,8 +3,13 @@ const gameboard = (() => { //iife
 
     //place markers
 
-    const placeMarker = (marker, index) => {
-        
+    const placeMarker = (index) => {
+        if (gameboardArray[index] == "") { // if array item is empty
+            gameboardArray[index] = player.marker; // puts marker on cell space WITHIN ARRAY
+            return true
+        } else {
+            return false
+        }
     }
 
     //
@@ -70,6 +75,12 @@ const gameLogic = (() => { //iife
     return {
         
     }
+});
+
+// screen controls
+
+const screenControls = (() => {
+    
 });
 
 // put it all together
