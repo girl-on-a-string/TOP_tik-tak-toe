@@ -1,11 +1,21 @@
 const gameboard = (() => { //iife
+    //create gameboard
+
     const gameboardArray = Array(9).fill(null);
+
+    const renderBoard = () => {
+        let boardHTML = document.getElementById("board");
+        gameboardArray.forEach((cell, index) => {
+            boardHTML += `<div class="cell" data-index="${index}">${cell}</div>`;
+        });
+    }
 
     //place markers
 
     const placeMarker = (index) => {
         if (gameboardArray[index] == "") { // if array item is empty
             gameboardArray[index] = player.marker; // puts marker on cell space WITHIN ARRAY
+            turn++
             return true
         } else {
             return false
@@ -17,9 +27,9 @@ const gameboard = (() => { //iife
     const getGameboard = () => gameboardArray;
 
     return {
-        placeMarker, getGameboard
+        placeMarker, getGameboard, renderBoard
     }
-});
+})();
 
 
 // players
@@ -36,6 +46,7 @@ function player (name, marker) {
 
 const gameLogic = (() => { //iife
     let isGameOver = false;
+    let turn = 0; 
 
     // change player 
 
@@ -80,27 +91,34 @@ const gameLogic = (() => { //iife
 // screen controls
 
 const screenControls = (() => {
-    
-});
+    const playerOne = player("playerOne", "X");
+    const playerTwo = player("PlayerTwo", "O");
 
-// put it all together
+    let currentPlayer = playerOne;
 
-const playerOne = player("playerOne", "X");
-const playerTwo = player("PlayerTwo", "O");
+    const cell = document.querySelectorAll(".cell");
 
-let currentPlayer = playerOne;
+    const cellClick = () => {
+        cell.forEach(cell => {
+            cell.addEventListener("click", () => {
+                gameboard.placeMarker;
+                console.log("clicked");
+            });
+        });
+    }
 
-const cell = document.querySelectorAll(".cell");
-
-cell.forEach(cell => {
-    cell.addEventListener("click", () => {
-        console.log("clicked");
+    const resetBtn = document.getElementById("restart");
+    resetBtn.addEventListener("click", () => {
+        console.log("resetting");
     });
+
+    return {
+        cellClick
+    }
 });
 
-const resetBtn = document.getElementById("restart");
-resetBtn.addEventListener("click", () => {
-    console.log("resetting");
-});
+screenControls.cellClick;
+
+
 
 
