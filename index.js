@@ -65,24 +65,32 @@ const gameLogic = (() => { //iife module
     }
 })();
 
+(() => { //iife module
+    const fullDisplay = document.getElementById("game");
+    fullDisplay.style.display = "none";
 
-const startBtn = document.getElementById("start-game");
+    const startBtn = document.getElementById("start-game");
 
-startBtn.addEventListener("click", () => {
-    if (document.querySelectorAll(".input").value !== "") {
-        const modal = document.getElementById("modal");
-        modal.style.display = "none";
-        
-        const playerOne = player(document.querySelector("#playerOne-input").value, "X");
-        const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
-        
-        console.log("game initiated");
-        
-        gameLogic.start();
-    } else {
-        alert("You must input a player name");
-    }
-});
+    startBtn.addEventListener("click", () => {
+        if (document.querySelectorAll(".input").value !== "") {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+    
+            fullDisplay.style.display = "initial";
+            
+            const playerOne = player(document.querySelector("#playerOne-input").value, "X");
+            const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
+            
+            console.log("game initiated");
+            
+            gameLogic.start();
+        } else {
+            alert("You must input a player name");
+        }
+    });
+})();
+
+
 
 
 
