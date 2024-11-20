@@ -53,7 +53,7 @@ const gameLogic = (() => { //iife module
         player(document.getElementById("playerTwo-input").value, "O", "0")
     ]
 
-    let currentPlayer;
+    let currentPlayer = players[0];
     let isGameOver = false;
     let turn = 0; 
 
@@ -62,8 +62,10 @@ const gameLogic = (() => { //iife module
     const playTurn = () => {
         const cell = document.querySelectorAll(".cell");
         cell.forEach(cell => {
-            cell.addEventListener("click", () => {
+            cell.addEventListener("click", (index) => {
                 console.log(cell.getAttribute("data-index"));
+
+                cell.innerText = currentPlayer.marker;
             });
         });
     }
