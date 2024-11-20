@@ -84,7 +84,16 @@ const gameLogic = (() => { //iife module
     // check for winner
 
     const checkWinner = () => {
-
+        const winningCombos = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8]
+        ]
     }
 
     // restart game
@@ -135,9 +144,6 @@ const gameLogic = (() => { //iife module
             modal.style.display = "none";
     
             fullDisplay.style.display = "initial";
-            
-            // const playerOne = player(document.querySelector("#playerOne-input").value, "X");
-            // const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
             
             console.log("game initiated");
             
