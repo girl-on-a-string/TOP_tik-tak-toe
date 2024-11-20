@@ -1,7 +1,7 @@
 const gameboard = (() => { //iife module
     //create gameboard
 
-    const gameboardArray = Array(9).fill(null);
+    const gameboardArray = Array(9).fill("");
     const getGameboard = () => gameboardArray;
 
     const renderBoard = () => {
@@ -14,19 +14,32 @@ const gameboard = (() => { //iife module
         console.log("rendering board");
     }
 
+    // place markers
+
+    const placeMarkers = (index) => {
+        if (gameboardArray[index] == "") {
+            gameboardArray[index] = currentPlayer.marker;
+            return true
+        } else {
+            return false;
+        }
+    }
+
+    //
+
     console.log("gameboard running");
 
     return {
-        renderBoard, getGameboard
+        renderBoard, getGameboard, placeMarkers
     }
 })();
 
 
 // player factory
 
-function player (name, marker) {
+function player (name, marker, score) {
     return {
-        name, marker
+        name, marker, score
     }
 }
 
@@ -35,8 +48,10 @@ function player (name, marker) {
 const gameLogic = (() => { //iife module
     console.log("game logic running");
 
-    let playerOne = player(document.getElementById("playerOne-input").value, "X");
-    let playerTwo = player(document.getElementById("playerTwo-input").value, "O");
+    const players = [
+        player(document.getElementById("playerOne-input").value, "X", "0"),
+        player(document.getElementById("playerTwo-input").value, "O", "0")
+    ]
 
     let currentPlayer;
     let isGameOver = false;
@@ -45,6 +60,18 @@ const gameLogic = (() => { //iife module
     // play turn / place marks
 
     const playTurn = () => {
+        const cell = document.querySelectorAll(".cell");
+        cell.forEach(cell => {
+            cell.addEventListener("click", () => {
+                console.log(cell.getAttribute("data-index"));
+            });
+        });
+    }
+
+    // restart game
+
+    const resetGame = () => {
+
     }
 
     // start game 
@@ -56,12 +83,12 @@ const gameLogic = (() => { //iife module
         if (isGameOver) {
             console.log("game is over");
         } else { 
-            
+            gameLogic.playTurn();
         }
     }
 
     return {
-        start
+        start, playTurn
     }
 })();
 
@@ -70,7 +97,6 @@ const gameLogic = (() => { //iife module
     fullDisplay.style.display = "none";
 
     const startBtn = document.getElementById("start-game");
-
     startBtn.addEventListener("click", () => {
         if (document.querySelectorAll(".input").value !== "") {
             const modal = document.getElementById("modal");
@@ -78,8 +104,8 @@ const gameLogic = (() => { //iife module
     
             fullDisplay.style.display = "initial";
             
-            const playerOne = player(document.querySelector("#playerOne-input").value, "X");
-            const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
+            // const playerOne = player(document.querySelector("#playerOne-input").value, "X");
+            // const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
             
             console.log("game initiated");
             
