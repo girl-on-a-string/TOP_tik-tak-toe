@@ -14,7 +14,7 @@ const gameboard = (() => { //iife module
         console.log("rendering board");
     }
 
-    console.log("gameboard working");
+    console.log("gameboard running");
 
     return {
         renderBoard, getGameboard
@@ -35,14 +35,29 @@ function player (name, marker) {
 const gameLogic = (() => { //iife module
     console.log("game logic running");
 
+    let playerOne = player(document.getElementById("playerOne-input").value, "X");
+    let playerTwo = player(document.getElementById("playerTwo-input").value, "O");
+
+    let currentPlayer;
     let isGameOver = false;
     let turn = 0; 
+
+    // play turn / place marks
+
+    const playTurn = () => {
+    }
 
     // start game 
 
     const start = () => {
         gameboard.renderBoard();
-        console.log("game starting...")
+        console.log("game starting...");
+
+        if (isGameOver) {
+            console.log("game is over");
+        } else { 
+            
+        }
     }
 
     return {
