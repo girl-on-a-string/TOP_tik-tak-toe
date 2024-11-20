@@ -60,18 +60,22 @@ const gameLogic = (() => { //iife module
     // play turn / place marks
 
     const playTurn = () => {
+        let statusDisplay = document.getElementById("turn-status");
+
         const cell = document.querySelectorAll(".cell");
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
                 cell.innerText = currentPlayer.marker;
                 gameboard.getGameboard[index] = currentPlayer.marker;
-                
+
                 turn++
 
                 if (turn % 2 == 0 || turn == 0) { // if turn is even
                     currentPlayer = players[0];
+                    statusDisplay.innerText = players[0].name + "'s turn";
                 } else {
                     currentPlayer = players[1];
+                    statusDisplay.innerText = players[1].name + "'s turn";
                 }
             });
         });
