@@ -2,12 +2,16 @@ const gameboard = (() => { //iife
     //create gameboard
 
     const gameboardArray = Array(9).fill(null);
+    const getGameboard = () => gameboardArray;
 
     const renderBoard = () => {
-        let boardHTML = document.getElementById("board");
+        let boardHTML = "";
         gameboardArray.forEach((cell, index) => {
             boardHTML += `<div class="cell" data-index="${index}">${cell}</div>`;
         });
+
+        document.getElementById("board").innerHTML = boardHTML;
+        console.log("rendering board");
     }
 
     //place markers
@@ -24,7 +28,7 @@ const gameboard = (() => { //iife
 
     //
 
-    const getGameboard = () => gameboardArray;
+    console.log("gameboard working");
 
     return {
         placeMarker, getGameboard, renderBoard
@@ -45,6 +49,8 @@ function player (name, marker) {
 // game logic
 
 const gameLogic = (() => { //iife
+    console.log("game logic running");
+
     let isGameOver = false;
     let turn = 0; 
 
@@ -87,6 +93,7 @@ const gameLogic = (() => { //iife
 
     const start = () => {
         gameboard.renderBoard;
+        console.log("game starting...")
     }
 
     return {
@@ -97,17 +104,23 @@ const gameLogic = (() => { //iife
 
 const startBtn = document.getElementById("start-game");
 
-startBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+(() => {
+    console.log("program running");
 
-    const modal = document.getElementById("modal");
-    modal.style.display = "none";
-
-    const playerOne = player(document.querySelector("#playerOne-input").value, "X");
-    const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
-
-    gameLogic.start;
-});
+    startBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+    
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+    
+        const playerOne = player(document.querySelector("#playerOne-input").value, "X");
+        const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
+    
+        console.log("game initiated");
+    
+        console.log(gameLogic.start);
+    });
+})();
 
 
 
