@@ -63,11 +63,24 @@ const gameLogic = (() => { //iife module
         const cell = document.querySelectorAll(".cell");
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
-                console.log(cell.getAttribute("data-index"));
-
                 cell.innerText = currentPlayer.marker;
+                gameboard.getGameboard[index] = currentPlayer.marker;
+                
+                turn++
+
+                if (turn % 2 == 0 || turn == 0) { // if turn is even
+                    currentPlayer = players[0];
+                } else {
+                    currentPlayer = players[1];
+                }
             });
         });
+    }
+
+    // check for winner
+
+    const checkWinner = () => {
+
     }
 
     // restart game
