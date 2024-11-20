@@ -35,6 +35,11 @@ body {
   align-self: center;
 }
 
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
 #board .cell {
   border: 0.0625rem solid black;
 }/*# sourceMappingURL=index.css.map */

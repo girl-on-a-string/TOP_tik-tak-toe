@@ -43,3 +43,15 @@ body {
         }
     }
 }
+
+// game
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .cell {
+        border: .0625rem solid black;
+    }
+}
