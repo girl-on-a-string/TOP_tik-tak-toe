@@ -74,10 +74,23 @@ const gameLogic = (() => { //iife module
 
     }
 
+    // update status 
+
+    const updateGameStatus = () => {
+        // update display names 
+
+        let displayP1Name = document.getElementById("playerOne-id");
+        displayP1Name.innerText = players[0].name;
+        
+        let displayP2Name = document.getElementById("playerTwo-id");
+        displayP2Name.innerText = players[1].name;
+    }
+
     // start game 
 
     const start = () => {
         gameboard.renderBoard();
+        gameLogic.updateGameStatus();
         console.log("game starting...");
 
         if (isGameOver) {
@@ -88,7 +101,7 @@ const gameLogic = (() => { //iife module
     }
 
     return {
-        start, playTurn
+        start, playTurn, updateGameStatus
     }
 })();
 
