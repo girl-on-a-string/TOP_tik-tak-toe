@@ -1,4 +1,4 @@
-const gameboard = (() => { //iife
+const gameboard = (() => { //iife module
     //create gameboard
 
     const gameboardArray = Array(9).fill(null);
@@ -17,12 +17,12 @@ const gameboard = (() => { //iife
     console.log("gameboard working");
 
     return {
-        renderBoard
+        renderBoard, getGameboard
     }
 })();
 
 
-// players
+// player factory
 
 function player (name, marker) {
     return {
@@ -32,7 +32,7 @@ function player (name, marker) {
 
 // game logic
 
-const gameLogic = (() => { //iife
+const gameLogic = (() => { //iife module
     console.log("game logic running");
 
     let isGameOver = false;
@@ -41,7 +41,7 @@ const gameLogic = (() => { //iife
     // start game 
 
     const start = () => {
-        gameboard.renderBoard;
+        gameboard.renderBoard();
         console.log("game starting...")
     }
 
@@ -54,16 +54,19 @@ const gameLogic = (() => { //iife
 const startBtn = document.getElementById("start-game");
 
 startBtn.addEventListener("click", () => {
-    
-    // const modal = document.getElementById("modal");
-    // modal.style.display = "none";
-    
-    // const playerOne = player(document.querySelector("#playerOne-input").value, "X");
-    // const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
-    
-    console.log("game initiated");
-    
-    gameLogic.start
+    if (document.querySelectorAll(".input").value !== "") {
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+        
+        const playerOne = player(document.querySelector("#playerOne-input").value, "X");
+        const playerTwo = player(document.querySelector("#playerTwo-input").value, "O");
+        
+        console.log("game initiated");
+        
+        gameLogic.start();
+    } else {
+        alert("You must input a player name");
+    }
 });
 
 
