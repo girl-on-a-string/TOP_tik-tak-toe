@@ -33,4 +33,8 @@ body {
 }
 #modal form button {
   align-self: center;
+}
+
+#board .cell {
+  border: 0.0625rem solid black;
 }/*# sourceMappingURL=index.css.map */
