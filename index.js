@@ -65,10 +65,23 @@ const gameLogic = (() => { //iife module
 
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
-                console.log("clicked");
                 gameboard.placeMarkers(index, currentPlayer.marker);
                 cell.innerText = currentPlayer.marker;
-                currentPlayer == players[0] ? currentPlayer = players[1] : currentPlayer = players[0];
+                // currentPlayer == players[0] ? currentPlayer = players[1] : currentPlayer = players[0];
+
+                let specialStyle = getComputedStyle(document.body);
+                let p1Color = specialStyle.getPropertyValue("--p1-cl");
+                let p2Color = specialStyle.getPropertyValue("--p2-cl");
+
+                if (currentPlayer == players[0]) {
+                    currentPlayer = players[1];
+                    cell.style.color = p1Color;
+                } else {
+                    currentPlayer = players[0];
+                    cell.style.color = p2Color;
+                }
+
+                statusDisplay.innerText = `${currentPlayer.name}'s turn`;
             });
         });
     }
@@ -113,8 +126,9 @@ const gameLogic = (() => { //iife module
     // reset game
 
     const resetGame = () => {
+        console.log("resetting...");
         gameboard.getGameboard().fill("");
-        
+        console.log(document.querySelectorAll(".cell").innerText = "");
     }
 
     // update status 
