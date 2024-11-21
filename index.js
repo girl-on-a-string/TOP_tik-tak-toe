@@ -68,15 +68,7 @@ const gameLogic = (() => { //iife module
                 cell.innerText = currentPlayer.marker;
                 gameboard.getGameboard[index] = currentPlayer.marker;
 
-                turn++
-
-                if (turn % 2 == 0 || turn == 0) { // if turn is even
-                    currentPlayer = players[0];
-                    statusDisplay.innerText = players[0].name + "'s turn";
-                } else {
-                    currentPlayer = players[1];
-                    statusDisplay.innerText = players[1].name + "'s turn";
-                }
+                currentPlayer == players[0] ? currentPlayer = players[1] : currentPlayer = players[0];
             });
         });
     }
@@ -94,6 +86,8 @@ const gameLogic = (() => { //iife module
             [1, 4, 7],
             [2, 5, 8]
         ]
+
+
     }
 
     // restart game
