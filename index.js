@@ -16,9 +16,9 @@ const gameboard = (() => { //iife module
 
     // place markers
 
-    const placeMarkers = (index) => {
-        if (gameboardArray[index] == "") {
-            gameboardArray[index] = currentPlayer.marker;
+    const placeMarkers = (index, marker) => {
+        if (gameboardArray[index] === "") {
+            gameboardArray[index] = marker;
             return true
         } else {
             return false;
@@ -46,6 +46,7 @@ function player (name, marker, score) {
 // game logic
 
 const gameLogic = (() => { //iife module
+
     console.log("game logic running");
 
     const players = [
@@ -54,20 +55,19 @@ const gameLogic = (() => { //iife module
     ]
 
     let currentPlayer = players[0];
-    let isGameOver = false;
-    let turn = 0; 
+    let isGameOver = false; 
 
     // play turn / place marks
 
     const playTurn = () => {
+        const cell = document.querySelectorAll(".cell");
         let statusDisplay = document.getElementById("turn-status");
 
-        const cell = document.querySelectorAll(".cell");
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
+                console.log("clicked");
+                gameboard.placeMarkers(index, currentPlayer.marker);
                 cell.innerText = currentPlayer.marker;
-                gameboard.getGameboard[index] = currentPlayer.marker;
-
                 currentPlayer == players[0] ? currentPlayer = players[1] : currentPlayer = players[0];
             });
         });
@@ -87,13 +87,34 @@ const gameLogic = (() => { //iife module
             [2, 5, 8]
         ]
 
+        for (combo of winningCombos) {
+            combo = [a, b, c]; 
 
+            if (gameboard.getGameboard[a] === gameboard.getGameboard[b] && gameboard.getGameboard[b] === gameboard.getGameboard[c]) {
+                isGameOver = true;
+
+                for (cell of combo) {
+                    cell = document.querySelectorAll(".cell");
+                    cell.classlist.add("winner");
+                }
+
+                let winnerDisplay = document.getElementById("winner-display");
+                winnerDisplay.innerText = currentPlayer + "wins!";
+
+                currentPlayer.score++;
+
+                return true
+            } else {
+                return false
+            }
+        }
     }
 
-    // restart game
+    // reset game
 
     const resetGame = () => {
-
+        gameboard.getGameboard().fill("");
+        
     }
 
     // update status 
@@ -123,7 +144,7 @@ const gameLogic = (() => { //iife module
     }
 
     return {
-        start, playTurn, updateGameStatus
+        start, playTurn, updateGameStatus, resetGame, checkWinner
     }
 })();
 
@@ -145,6 +166,11 @@ const gameLogic = (() => { //iife module
         } else {
             alert("You must input a player name");
         }
+    });
+
+    const resetBtn = document.getElementById("reset");
+    resetBtn.addEventListener("click", () => {
+        gameLogic.resetGame();
     });
 })();
 
