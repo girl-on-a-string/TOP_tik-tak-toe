@@ -1,5 +1,11 @@
 :root {
     --standard-margin: .625rem;
+    --gap: 1.875rem;
+
+    --bg-cl: rgb(10, 10, 10);
+    --cell-cl: rgba(248, 250, 252, 0.15);
+    --p1-cl: rgb(185, 28, 28);
+    --p2-cl: rgb(29, 78, 216);
 }
 
 //
@@ -15,6 +21,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-cl);
 }
 
 #container {
@@ -50,10 +59,12 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    gap: var(--gap);
 
     .cell {
-        border: .0625rem solid black;
         height: 12.5rem;
         width: 12.5rem;
+        font-size: 6.25rem;
+        background-color: var(--cell-cl);
     }
 }
