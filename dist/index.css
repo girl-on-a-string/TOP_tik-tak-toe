@@ -3,8 +3,13 @@
   --gap: 1.875rem;
   --bg-cl: rgb(10, 10, 10);
   --cell-cl: rgba(248, 250, 252, 0.15);
+  --cell-cl-win: rgba(248, 250, 252, 0.2);
   --p1-cl: rgb(185, 28, 28);
+  --p1-grad: radial-gradient(var(--p1-cl), transparent);
   --p2-cl: rgb(29, 78, 216);
+  --p2-grad: radial-gradient(var(--p2-cl), transparent);
+  --winner-cl: rgb(132, 204, 22);
+  --winner-grad: radial-gradient(var(--winner-cl), transparent);
 }
 
 * {
@@ -61,4 +66,7 @@ body {
   font-style: normal;
   font-weight: 500;
   background-color: var(--cell-cl);
+}
+#board .cell .winner {
+  background-color: var(--cell-cl-win);
 }/*# sourceMappingURL=index.css.map */
