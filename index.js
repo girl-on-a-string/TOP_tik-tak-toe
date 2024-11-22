@@ -62,12 +62,12 @@ const gameLogic = (() => { //iife module
     const playTurn = () => {
         const cell = document.querySelectorAll(".cell");
         let statusDisplay = document.getElementById("turn-status");
+        statusDisplay.innerText = `${players[0].name}'s turn`;
 
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
                 gameboard.placeMarkers(index, currentPlayer.marker);
                 cell.innerText = currentPlayer.marker;
-                // currentPlayer == players[0] ? currentPlayer = players[1] : currentPlayer = players[0];
 
                 let specialStyle = getComputedStyle(document.body);
                 let p1Color = specialStyle.getPropertyValue("--p1-cl");
@@ -88,7 +88,7 @@ const gameLogic = (() => { //iife module
 
     // check for winner
 
-    const checkWinner = () => {
+    const checkWinner = (a, b, c) => {
         const winningCombos = [
             [0, 1, 2],
             [3, 4, 5],
@@ -105,10 +105,10 @@ const gameLogic = (() => { //iife module
 
             if (gameboard.getGameboard[a] === gameboard.getGameboard[b] && gameboard.getGameboard[b] === gameboard.getGameboard[c]) {
                 isGameOver = true;
+                console.log(`game over, ${currentPlayer.name} wins`);
 
                 for (cell of combo) {
-                    cell = document.querySelectorAll(".cell");
-                    cell.classlist.add("winner");
+                    document.querySelector(`[data-index="${cell}"]`).classList.add("winner");
                 }
 
                 let winnerDisplay = document.getElementById("winner-display");
@@ -128,7 +128,6 @@ const gameLogic = (() => { //iife module
     const resetGame = () => {
         console.log("resetting...");
         gameboard.getGameboard().fill("");
-        console.log(document.querySelectorAll(".cell").innerText = "");
     }
 
     // update status 
@@ -154,6 +153,7 @@ const gameLogic = (() => { //iife module
             console.log("game is over");
         } else { 
             gameLogic.playTurn();
+            gameLogic.checkWinner();
         }
     }
 
