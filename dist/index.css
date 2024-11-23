@@ -11,6 +11,7 @@
   --p2-grad: radial-gradient(var(--p2-cl), transparent);
   --winner-cl: rgb(132, 204, 22);
   --winner-grad: radial-gradient(var(--winner-cl), transparent);
+  --cr-size: 75rem;
 }
 
 * {
@@ -40,20 +41,20 @@ body {
 #p1-grad-cr, #p2-grad-cr {
   position: absolute;
   z-index: 0;
-  width: 62.5rem;
-  height: 62.5rem;
+  width: var(--cr-size);
+  height: var(--cr-size);
 }
 
 #p1-grad-cr {
   background-image: var(--p1-grad);
-  top: 0;
-  left: 0;
+  top: calc(var(--cr-size) / 2 * -1);
+  left: calc(var(--cr-size) / 2 * -1);
 }
 
 #p2-grad-cr {
   background-image: var(--p2-grad);
-  bottom: 0;
-  right: 0;
+  bottom: calc(var(--cr-size) / 2 * -1);
+  right: calc(var(--cr-size) / 2 * -1);
 }
 
 #modal {
