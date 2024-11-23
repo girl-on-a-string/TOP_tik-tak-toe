@@ -38,9 +38,22 @@ body {
 }
 
 #p1-grad-cr, #p2-grad-cr {
-  margin: 100%;
   position: absolute;
   z-index: 0;
+  width: 62.5rem;
+  height: 62.5rem;
+}
+
+#p1-grad-cr {
+  background-image: var(--p1-grad);
+  top: 0;
+  left: 0;
+}
+
+#p2-grad-cr {
+  background-image: var(--p2-grad);
+  bottom: 0;
+  right: 0;
 }
 
 #modal {
