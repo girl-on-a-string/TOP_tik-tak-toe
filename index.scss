@@ -1,5 +1,6 @@
 :root {
     --standard-margin: .625rem;
+    --border-rad: 1.25rem;
     --gap: 1.875rem;
 
     --bg-cl: rgb(10, 10, 10);
@@ -31,12 +32,24 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
+
     background-color: var(--bg-cl);
+    background-size: cover;
+
     color: darkcyan;
 }
 
 #container {
-    width: 31.25rem;
+    width: min-content;
+    z-index: 1;
+}
+
+// gradients
+
+#p1-grad-cr, #p2-grad-cr {
+    margin: 100%;
+    position: absolute;
+    z-index: 0;
 }
 
 // Modal
@@ -69,6 +82,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: var(--gap);
+    border-radius: var(--border-rad);
+    background-color: var(--bg-cl);
 
     .cell {
         display: flex;
@@ -88,5 +103,21 @@ body {
         .winner {
             background-color: var(--cell-cl-win);
         }
+    }
+
+    :nth-child(1) {
+        border-radius: var(--border-rad) 0rem 0rem 0rem;
+    }
+
+    :nth-child(3) {
+        border-radius: 0rem var(--border-rad) 0rem 0rem;
+    }
+
+    :nth-child(7) {
+        border-radius: 0rem 0rem 0rem var(--border-rad);
+    }
+
+    :nth-child(9) {
+        border-radius: 0rem 0rem var(--border-rad) 0rem;
     }
 }
