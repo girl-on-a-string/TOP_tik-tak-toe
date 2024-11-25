@@ -8,15 +8,15 @@
     --cell-cl-win: rgba(248, 250, 252, 0.2);
 
     --p1-cl: rgb(185, 28, 28);
-    --p1-grad: radial-gradient(var(--p1-cl), transparent);
+    --p1-grad: radial-gradient(var(--p1-cl), transparent 70%);
 
     --p2-cl: rgb(29, 78, 216);
-    --p2-grad: radial-gradient(var(--p2-cl), transparent);
+    --p2-grad: radial-gradient(var(--p2-cl), transparent 70%);
 
     --winner-cl: rgb(132, 204, 22);
     --winner-grad: radial-gradient(var(--winner-cl), transparent);
 
-    --cr-size: 75rem;
+    --cr-size: 93.75rem;
 }
 
 //
