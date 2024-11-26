@@ -1,3 +1,6 @@
+let p1GradCr = document.getElementById("p1-grad-cr");
+let p2GradCr = document.getElementById("p2-grad-cr");
+
 const gameboard = (() => { //iife module
     //create gameboard
 
@@ -63,10 +66,13 @@ const gameLogic = (() => { //iife module
         const cell = document.querySelectorAll(".cell");
         let statusDisplay = document.getElementById("turn-status");
         statusDisplay.innerText = `${players[0].name}'s turn`;
+        let bg = document.body;
 
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
                 gameboard.placeMarkers(index, currentPlayer.marker);
+                // gameLogic.checkWinner(index);
+
                 cell.innerText = currentPlayer.marker;
 
                 let specialStyle = getComputedStyle(document.body);
@@ -76,19 +82,33 @@ const gameLogic = (() => { //iife module
                 if (currentPlayer == players[0]) {
                     currentPlayer = players[1];
                     cell.style.color = p1Color;
+
+                    // p1GradCr.style.display = "initial";
+                    p1GradCr.classList.add("fade-in");
+                    // p2GradCr.style.display = "none";
+                    p2GradCr.classList.remove("fade-in");
+
+                    statusDisplay.innerText = `${currentPlayer.name}'s turn`;
                 } else {
                     currentPlayer = players[0];
                     cell.style.color = p2Color;
-                }
 
-                statusDisplay.innerText = `${currentPlayer.name}'s turn`;
+                    // p2GradCr.style.display = "initial";
+                    p2GradCr.classList.add("fade-in");
+                    // p1GradCr.style.display = "none";
+                    p1GradCr.classList.remove("fade-in");
+
+                    statusDisplay.innerText = `${currentPlayer.name}'s turn`;
+                }
             });
         });
     }
 
     // check for winner
 
-    const checkWinner = (a, b, c) => {
+    const checkWinner = (index) => {
+        const board = gameboard.getGameboard[index];
+
         const winningCombos = [
             [0, 1, 2],
             [3, 4, 5],
@@ -101,18 +121,24 @@ const gameLogic = (() => { //iife module
         ]
 
         for (combo of winningCombos) {
-            combo = [a, b, c]; 
+            const [a, b, c] = combo;
 
-            if (gameboard.getGameboard[a] === gameboard.getGameboard[b] && gameboard.getGameboard[b] === gameboard.getGameboard[c]) {
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
                 isGameOver = true;
                 console.log(`game over, ${currentPlayer.name} wins`);
 
+                const winnerColor = getComputedStyle(document, body).getPropertyValue("--winner-grad");
+
+                p1GradCr.style.backgroundImage = winnerColor;
+                p2GradCr.style.backgroundImage = winnerColor;
+
                 for (cell of combo) {
-                    document.querySelector(`[data-index="${cell}"]`).classList.add("winner");
+                    document.querySelectorAll(`[data-index="${cell}"]`).classList.add("winner");
+                    
                 }
 
                 let winnerDisplay = document.getElementById("winner-display");
-                winnerDisplay.innerText = currentPlayer + "wins!";
+                winnerDisplay.innerText = currentPlayer.name + " wins!";
 
                 currentPlayer.score++;
 
@@ -121,6 +147,12 @@ const gameLogic = (() => { //iife module
                 return false
             }
         }
+    }
+    
+    // check for draw
+
+    const checkDraw = () => {
+        
     }
 
     // reset game
@@ -148,23 +180,38 @@ const gameLogic = (() => { //iife module
         gameboard.renderBoard();
         gameLogic.updateGameStatus();
         console.log("game starting...");
+        // gameLogic.playTurn();
 
-        if (isGameOver) {
-            console.log("game is over");
-        } else { 
-            gameLogic.playTurn();
-            gameLogic.checkWinner();
+        if (gameLogic.playTurn()) {
+            if (gameboard.placeMarkers(index, currentPlayer.marker) === gameLogic.checkWinner()) {
+                console.log("game over");
+            }
         }
+
+        // if (checkWinner(gameboard.getGameboard[index]) === currentPlayer.marker) {
+        //     isGameOver = true;
+        // }
+
+        // if (isGameOver) {
+        //     console.log("game is over");
+        // } else { 
+        //     gameLogic.playTurn();
+        //     gameLogic.checkWinner();
+        //     gameLogic.checkDraw();
+        // }
     }
 
     return {
-        start, playTurn, updateGameStatus, resetGame, checkWinner
+        start, playTurn, updateGameStatus, resetGame, checkWinner, checkDraw
     }
 })();
 
 (() => { //iife module
     const fullDisplay = document.getElementById("game");
     fullDisplay.style.display = "none";
+
+    p1GradCr.style.display = "initial";
+    p2GradCr.style.display = "initial";
 
     const startBtn = document.getElementById("start-game");
     startBtn.addEventListener("click", () => {
@@ -173,6 +220,9 @@ const gameLogic = (() => { //iife module
             modal.style.display = "none";
     
             fullDisplay.style.display = "initial";
+
+            p1GradCr.style.display = "initial";
+            p2GradCr.style.display = "none";
             
             console.log("game initiated");
             
