@@ -4,7 +4,7 @@ let p2GradCr = document.getElementById("p2-grad-cr");
 const gameboard = (() => { //iife module
     //create gameboard
 
-    const gameboardArray = Array(9).fill("");
+    let gameboardArray = Array(9).fill("");
     const getGameboard = () => gameboardArray;
 
     const renderBoard = () => {
@@ -22,6 +22,7 @@ const gameboard = (() => { //iife module
     const placeMarkers = (index, marker) => {
         // if (gameboardArray[index] === "") {
             gameboardArray[index] = marker;
+            gameboardArray.splice(index, 1, marker);
             console.log("placed marker " + gameboardArray[index]);
             return true
         // } else {
