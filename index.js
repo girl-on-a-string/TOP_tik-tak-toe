@@ -22,8 +22,7 @@ const gameboard = (() => { //iife module
     const placeMarkers = (index, marker) => {
         // if (gameboardArray[index] === "") {
             gameboardArray[index] = marker;
-            console.log(gameboardArray[index]);
-            console.log("placed marker");
+            console.log("placed marker " + gameboardArray[index]);
             return true
         // } else {
         //     return false;
@@ -72,34 +71,38 @@ const gameLogic = (() => { //iife module
 
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
-                gameboard.placeMarkers(index, currentPlayer.marker);
+                if (cell.innerText === "") {
+                    gameboard.placeMarkers(index, currentPlayer.marker);
 
-                cell.innerText = currentPlayer.marker;
+                    cell.innerText = currentPlayer.marker;
 
-                let specialStyle = getComputedStyle(document.body);
-                let p1Color = specialStyle.getPropertyValue("--p1-cl");
-                let p2Color = specialStyle.getPropertyValue("--p2-cl");
+                    let specialStyle = getComputedStyle(document.body);
+                    let p1Color = specialStyle.getPropertyValue("--p1-cl");
+                    let p2Color = specialStyle.getPropertyValue("--p2-cl");
 
-                if (currentPlayer == players[0]) {
-                    currentPlayer = players[1];
-                    cell.style.color = p1Color;
+                    if (currentPlayer == players[0]) {
+                        currentPlayer = players[1];
+                        cell.style.color = p1Color;
 
-                    // p1GradCr.style.display = "initial";
-                    p1GradCr.classList.add("fade-in");
-                    // p2GradCr.style.display = "none";
-                    p2GradCr.classList.remove("fade-in");
+                        // p1GradCr.style.display = "initial";
+                        p1GradCr.classList.add("fade-in");
+                        // p2GradCr.style.display = "none";
+                        p2GradCr.classList.remove("fade-in");
 
-                    statusDisplay.innerText = `${currentPlayer.name}'s turn`;
+                        statusDisplay.innerText = `${currentPlayer.name}'s turn`;
+                    } else {
+                        currentPlayer = players[0];
+                        cell.style.color = p2Color;
+
+                        // p2GradCr.style.display = "initial";
+                        p2GradCr.classList.add("fade-in");
+                        // p1GradCr.style.display = "none";
+                        p1GradCr.classList.remove("fade-in");
+
+                        statusDisplay.innerText = `${currentPlayer.name}'s turn`;
+                    }
                 } else {
-                    currentPlayer = players[0];
-                    cell.style.color = p2Color;
-
-                    // p2GradCr.style.display = "initial";
-                    p2GradCr.classList.add("fade-in");
-                    // p1GradCr.style.display = "none";
-                    p1GradCr.classList.remove("fade-in");
-
-                    statusDisplay.innerText = `${currentPlayer.name}'s turn`;
+                    return
                 }
 
                 console.log(gameboard.getGameboard());
