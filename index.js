@@ -20,12 +20,14 @@ const gameboard = (() => { //iife module
     // place markers
 
     const placeMarkers = (index, marker) => {
-        if (gameboardArray[index] === "") {
+        // if (gameboardArray[index] === "") {
             gameboardArray[index] = marker;
+            console.log(gameboardArray[index]);
+            console.log("placed marker");
             return true
-        } else {
-            return false;
-        }
+        // } else {
+        //     return false;
+        // }
     }
 
     //
@@ -71,7 +73,6 @@ const gameLogic = (() => { //iife module
         cell.forEach(cell => {
             cell.addEventListener("click", (index) => {
                 gameboard.placeMarkers(index, currentPlayer.marker);
-                // gameLogic.checkWinner(index);
 
                 cell.innerText = currentPlayer.marker;
 
@@ -100,13 +101,15 @@ const gameLogic = (() => { //iife module
 
                     statusDisplay.innerText = `${currentPlayer.name}'s turn`;
                 }
+
+                console.log(gameboard.getGameboard());
             });
         });
     }
 
     // check for winner
 
-    const checkWinner = (index) => {
+    const checkWinner = () => {
         const board = gameboard.getGameboard[index];
 
         const winningCombos = [
@@ -124,17 +127,14 @@ const gameLogic = (() => { //iife module
             const [a, b, c] = combo;
 
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                isGameOver = true;
-                console.log(`game over, ${currentPlayer.name} wins`);
 
                 const winnerColor = getComputedStyle(document, body).getPropertyValue("--winner-grad");
-
                 p1GradCr.style.backgroundImage = winnerColor;
                 p2GradCr.style.backgroundImage = winnerColor;
 
                 for (cell of combo) {
                     document.querySelectorAll(`[data-index="${cell}"]`).classList.add("winner");
-                    
+                    console.log("cell of combo");
                 }
 
                 let winnerDisplay = document.getElementById("winner-display");
@@ -152,7 +152,8 @@ const gameLogic = (() => { //iife module
     // check for draw
 
     const checkDraw = () => {
-        
+        const board = gameboard.getGameboard();
+
     }
 
     // reset game
@@ -180,13 +181,20 @@ const gameLogic = (() => { //iife module
         gameboard.renderBoard();
         gameLogic.updateGameStatus();
         console.log("game starting...");
-        // gameLogic.playTurn();
+        gameLogic.playTurn();
 
-        if (gameLogic.playTurn()) {
-            if (gameboard.placeMarkers(index, currentPlayer.marker) === gameLogic.checkWinner()) {
-                console.log("game over");
-            }
-        }
+        // if (gameLogic.playTurn()) {
+        //     if (gameboard.placeMarkers(index, currentPlayer.marker) === gameLogic.checkWinner()) {
+        //         console.log("game over");
+        //     }
+
+        //     console.log("playing turn");
+
+        //     // if (checkWinner(gameboard.getGameboard(), currentPlayer.marker)) {
+        //     //     console.log("game over");
+        //     //     console.log(`${currentPlayer.name} wins`);
+        //     // }
+        // }
 
         // if (checkWinner(gameboard.getGameboard[index]) === currentPlayer.marker) {
         //     isGameOver = true;
