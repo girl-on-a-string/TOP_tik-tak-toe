@@ -35,6 +35,7 @@ const Game = (() => {
 
         currentPlayerIndex = 0;
         gameOver = false;
+        Gameboard.render();
     }
 
     return {
