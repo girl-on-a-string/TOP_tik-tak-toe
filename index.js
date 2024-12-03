@@ -4,8 +4,8 @@ const Gameboard = (() => {
     const render = () => {
         let boardHTML = ""
 
-        gameboardArray.forEach((square, index) => {
-            boardHTML += `<div class="square" id="square-${index}">${square}</div>`;
+        gameboardArray.forEach((cell, index) => {
+            boardHTML += `<div class="cell" id="cell-${index}">${cell}</div>`;
         });
 
         document.getElementById("board").innerHTML = boardHTML;
@@ -24,8 +24,8 @@ const createPlayer = (name, mark) => {
 
 const Game = (() => {
     let players = [];
-    let currentPlayerIndex = 0;
-    let gameOver = false;
+    let currentPlayerIndex;
+    let gameOver;
 
     const start = () => {
         players = [
@@ -33,7 +33,8 @@ const Game = (() => {
             createPlayer(document.getElementById("playerTwo-input").value, "O")
         ]
 
-        
+        currentPlayerIndex = 0;
+        gameOver = false;
     }
 
     return {
