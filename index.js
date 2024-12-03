@@ -22,7 +22,9 @@ const gameboard = (() => { //iife module
     const placeMarkers = (index, marker) => {
         // if (gameboardArray[index] === "") {
             gameboardArray[index] = marker;
-            gameboardArray.splice(index, 1, marker);
+            // gameboardArray.splice(index, 1, marker);
+            console.log(gameboardArray);
+            console.log("player marker is " + marker);
             console.log("placed marker " + gameboardArray[index]);
             return true
         // } else {
@@ -71,7 +73,10 @@ const gameLogic = (() => { //iife module
         let bg = document.body;
 
         cell.forEach(cell => {
-            cell.addEventListener("click", (index) => {
+            cell.addEventListener("click", (index, e) => {
+                index = parseInt(cell.querySelector("[data-index]"));
+                console.log("index= " + index);
+
                 if (cell.innerText === "") {
                     gameboard.placeMarkers(index, currentPlayer.marker);
 
@@ -106,7 +111,7 @@ const gameLogic = (() => { //iife module
                     return
                 }
 
-                console.log(gameboard.getGameboard());
+                // console.log(gameboard.getGameboard());
             });
         });
     }
@@ -114,7 +119,8 @@ const gameLogic = (() => { //iife module
     // check for winner
 
     const checkWinner = () => {
-        const board = gameboard.getGameboard[index];
+        const board = gameboard.getGameboard();
+        // const board = document.querySelector("data-index");
 
         const winningCombos = [
             [0, 1, 2],
