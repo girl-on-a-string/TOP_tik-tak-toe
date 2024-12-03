@@ -10,15 +10,6 @@ const Gameboard = (() => {
             boardHTML += `<div class="cell" id="cell-${index}">${cell}</div>`;
         });
         document.getElementById("board").innerHTML = boardHTML;
-
-        // make each cell clickable
-
-        const cellAll = document.querySelectorAll(".cell");
-        cellAll.forEach((cell) => {
-            cell.addEventListener("click", (e) => {
-                Game.handleClick(e);
-            });
-        });
     }
 
     return {
@@ -38,7 +29,8 @@ const Game = (() => {
     let gameOver;
 
     const handleClick = (e) => {
-        console.log("hello world");
+        let index = parseInt(e.target.id.split("-")[1]); //get cell id, isolate number, convert to int
+        console.log(index);
     }
 
     const start = () => {
@@ -50,6 +42,13 @@ const Game = (() => {
         currentPlayerIndex = 0;
         gameOver = false;
         Gameboard.render();
+
+        const cellAll = document.querySelectorAll(".cell");
+        cellAll.forEach((cell) => {
+            cell.addEventListener("click", (e) => {
+                handleClick(e);
+            });
+        });
     }
 
     return {
