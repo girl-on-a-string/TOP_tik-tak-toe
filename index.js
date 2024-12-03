@@ -1,10 +1,39 @@
 const Gameboard = (() => {
-    
+    let gameboardArray = Array(9).fill("");
+
+    const render = () => {
+        let boardHTML = ""
+
+        gameboardArray.forEach((square, index) => {
+            boardHTML += `<div class="square" id="square-${index}">${square}</div>`;
+        });
+
+        document.getElementById("board").innerHTML = boardHTML;
+    }
+
+    return {
+        render
+    }
 })();
 
-const Game = (() => {
-    const start = () => {
+const createPlayer = (name, mark) => {
+    return {
+        name, mark
+    }
+}
 
+const Game = (() => {
+    let players = [];
+    let currentPlayerIndex = 0;
+    let gameOver = false;
+
+    const start = () => {
+        players = [
+            createPlayer(document.getElementById("playerOne-input").value, "X"),
+            createPlayer(document.getElementById("playerTwo-input").value, "O")
+        ]
+
+        
     }
 
     return {
@@ -13,8 +42,6 @@ const Game = (() => {
 })();
 
 (() => {
-    console.log("main iife working");
-
     const fullDisplay = document.getElementById("game");
     fullDisplay.style.display = "none";
 
