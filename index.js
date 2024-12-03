@@ -4,11 +4,21 @@ const Gameboard = (() => {
     const render = () => {
         let boardHTML = ""
 
+        // create gameboard
+
         gameboardArray.forEach((cell, index) => {
             boardHTML += `<div class="cell" id="cell-${index}">${cell}</div>`;
         });
-
         document.getElementById("board").innerHTML = boardHTML;
+
+        // make each cell clickable
+
+        const cellAll = document.querySelectorAll(".cell");
+        cellAll.forEach((cell) => {
+            cell.addEventListener("click", (e) => {
+                Game.handleClick(e);
+            });
+        });
     }
 
     return {
@@ -27,6 +37,10 @@ const Game = (() => {
     let currentPlayerIndex;
     let gameOver;
 
+    const handleClick = (e) => {
+        console.log("hello world");
+    }
+
     const start = () => {
         players = [
             createPlayer(document.getElementById("playerOne-input").value, "X"),
@@ -39,7 +53,7 @@ const Game = (() => {
     }
 
     return {
-        start
+        start, handleClick
     }
 })();
 
