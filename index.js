@@ -1,3 +1,13 @@
+const Game = (() => {
+    const start = () => {
+        
+    }
+
+    return {
+        start
+    }
+})();
+
 (() => {
     console.log("main iife working");
 
@@ -14,7 +24,7 @@
 
             console.log("game initiated");
 
-
+            Game.start();
         } else {
             alert("You must input a player name");
         }
