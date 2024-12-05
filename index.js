@@ -1,4 +1,6 @@
 const Gameboard = (() => {
+    console.log("gameboard module working");
+
     let gameboardArray = Array(9).fill("");
 
     const render = () => {
@@ -10,10 +12,22 @@ const Gameboard = (() => {
             boardHTML += `<div class="cell" id="cell-${index}">${cell}</div>`;
         });
         document.getElementById("board").innerHTML = boardHTML;
+
+        const cellAll = document.querySelectorAll(".cell");
+        cellAll.forEach((cell) => {
+            cell.addEventListener("click", (e) => {
+                Game.handleClick(e);
+            });
+        });
+    }
+
+    const updateDisplay = (index, mark) => {
+        gameboardArray[index] = mark;
+        render();
     }
 
     return {
-        render
+        render, updateDisplay
     }
 })();
 
@@ -24,13 +38,32 @@ const createPlayer = (name, mark) => {
 }
 
 const Game = (() => {
+    console.log("game module working");
+
     let players = [];
-    let currentPlayerIndex;
+    let currentPlayer = players[0];
     let gameOver;
+
+    const playTurn = () => {
+
+    }
 
     const handleClick = (e) => {
         let index = parseInt(e.target.id.split("-")[1]); //get cell id, isolate number, convert to int
-        console.log(index);
+        Gameboard.updateDisplay(index, players[0].mark);
+
+        let turnStatus = document.getElementById("turn-status");
+        turnStatus.innerText = `${players[0].name}'s turn`;
+
+        if (currentPlayer == players[0]) {
+            currentPlayer = players[1];
+            turnStatus.innerText = `${currentPlayer.name}'s turn`
+            document.querySelector(".cell").style.color = getComputedStyle(document.body).getPropertyValue("--p1-cl");
+        } else {
+            currentPlayer = players[0];
+            turnStatus.innerText = `${currentPlayer.name}'s turn`
+            document.querySelector(".cell").style.color = getComputedStyle(document.body).getPropertyValue("--p2-cl");
+        }       
     }
 
     const start = () => {
@@ -39,20 +72,16 @@ const Game = (() => {
             createPlayer(document.getElementById("playerTwo-input").value, "O")
         ]
 
-        currentPlayerIndex = 0;
         gameOver = false;
         Gameboard.render();
+    }
 
-        const cellAll = document.querySelectorAll(".cell");
-        cellAll.forEach((cell) => {
-            cell.addEventListener("click", (e) => {
-                handleClick(e);
-            });
-        });
+    const displayHandle = () => {
+        
     }
 
     return {
-        start, handleClick
+        start, handleClick, playTurn
     }
 })();
 
