@@ -16,7 +16,9 @@ const Gameboard = (() => {
         const cellAll = document.querySelectorAll(".cell");
         cellAll.forEach((cell) => {
             cell.addEventListener("click", (e) => {
-                Game.handleClick(e);
+                if (cell.innerText == "") {
+                    Game.handleClick(e);
+                }
             });
         });
     }
