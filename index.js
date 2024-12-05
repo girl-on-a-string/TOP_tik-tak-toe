@@ -3,6 +3,8 @@ const Gameboard = (() => {
 
     let gameboardArray = Array(9).fill("");
 
+    const getGameboard = () => gameboardArray;
+
     const render = () => {
         let boardHTML = ""
 
@@ -18,6 +20,7 @@ const Gameboard = (() => {
             cell.addEventListener("click", (e) => {
                 if (cell.innerText == "") {
                     Game.handleClick(e);
+                    Game.checkWinner();
                 }
             });
         });
@@ -29,7 +32,7 @@ const Gameboard = (() => {
     }
 
     return {
-        render, updateDisplay
+        render, updateDisplay, getGameboard
     }
 })();
 
@@ -72,6 +75,35 @@ const Game = (() => {
         }       
     }
 
+    const checkWinner = () => {
+        const board = Gameboard.getGameboard();
+
+        const winningCombos = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8]
+        ]
+
+        for (combo of winningCombos) {
+            const [a, b, c] = combo;
+
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                console.log("game over");
+
+                for (cell of combo) {
+                    cell = document.querySelector(`#cell-${cell}`).classList.add("winner");
+                }
+
+                gameOver = true;
+            }
+        }
+    }
+
     const start = () => {
         gameOver = false;
         Gameboard.render();
@@ -81,7 +113,7 @@ const Game = (() => {
     }
 
     return {
-        start, handleClick, playTurn
+        start, handleClick, playTurn, checkWinner
     }
 })();
 
