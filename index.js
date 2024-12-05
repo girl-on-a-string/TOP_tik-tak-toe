@@ -54,7 +54,7 @@ const Game = (() => {
 
     const handleClick = (e) => {
         let index = parseInt(e.target.id.split("-")[1]); //get cell id, isolate number, convert to int
-        Gameboard.updateDisplay(index, players[0].mark);
+        Gameboard.updateDisplay(index, currentPlayer.mark);
 
         let turnStatus = document.getElementById("turn-status");
         turnStatus.innerText = `${players[0].name}'s turn`;
