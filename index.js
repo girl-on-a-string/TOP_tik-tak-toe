@@ -99,6 +99,8 @@ const Game = (() => {
                     cell = document.querySelector(`#cell-${cell}`).classList.add("winner");
                 }
 
+                document.getElementById("winner-display").innerText = `${currentPlayer.name} wins!`
+
                 gameOver = true;
             }
         }
