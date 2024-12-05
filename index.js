@@ -40,7 +40,11 @@ const createPlayer = (name, mark) => {
 const Game = (() => {
     console.log("game module working");
 
-    let players = [];
+    const players = [
+        createPlayer(document.getElementById("playerOne-input").value, "X"),
+        createPlayer(document.getElementById("playerTwo-input").value, "O")
+    ]
+
     let currentPlayer = players[0];
     let gameOver;
 
@@ -67,17 +71,11 @@ const Game = (() => {
     }
 
     const start = () => {
-        players = [
-            createPlayer(document.getElementById("playerOne-input").value, "X"),
-            createPlayer(document.getElementById("playerTwo-input").value, "O")
-        ]
-
         gameOver = false;
         Gameboard.render();
-    }
 
-    const displayHandle = () => {
-        
+        document.getElementById("playerOne-id").innerText = players[0].name;
+        document.getElementById("playerTwo-id").innerText = players[1].name;
     }
 
     return {
